@@ -14,6 +14,9 @@
 		BC1FBD3821B6B5C50000FB71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC1FBD3621B6B5C50000FB71 /* LaunchScreen.storyboard */; };
 		BC1FBD4321B6B5C50000FB71 /* SuperQuizzTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1FBD4221B6B5C50000FB71 /* SuperQuizzTests.swift */; };
 		BC1FBD4E21B6B5C50000FB71 /* SuperQuizzUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1FBD4D21B6B5C50000FB71 /* SuperQuizzUITests.swift */; };
+		BC1FBD5C21B6B7690000FB71 /* QuestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1FBD5B21B6B7690000FB71 /* QuestionsTableViewController.swift */; };
+		BC1FBD5F21B6C0F10000FB71 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1FBD5D21B6C0F10000FB71 /* QuestionTableViewCell.swift */; };
+		BC1FBD6021B6C0F10000FB71 /* QuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC1FBD5E21B6C0F10000FB71 /* QuestionTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		BC1FBD4921B6B5C50000FB71 /* SuperQuizzUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperQuizzUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC1FBD4D21B6B5C50000FB71 /* SuperQuizzUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperQuizzUITests.swift; sourceTree = "<group>"; };
 		BC1FBD4F21B6B5C50000FB71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC1FBD5B21B6B7690000FB71 /* QuestionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsTableViewController.swift; sourceTree = "<group>"; };
+		BC1FBD5D21B6C0F10000FB71 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
+		BC1FBD5E21B6C0F10000FB71 /* QuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +106,9 @@
 				BC1FBD2D21B6B5C30000FB71 /* AppDelegate.swift */,
 				BC1FBD2F21B6B5C30000FB71 /* ViewController.swift */,
 				BC1FBD3121B6B5C30000FB71 /* Main.storyboard */,
+				BC1FBD5B21B6B7690000FB71 /* QuestionsTableViewController.swift */,
+				BC1FBD5D21B6C0F10000FB71 /* QuestionTableViewCell.swift */,
+				BC1FBD5E21B6C0F10000FB71 /* QuestionTableViewCell.xib */,
 				BC1FBD3421B6B5C50000FB71 /* Assets.xcassets */,
 				BC1FBD3621B6B5C50000FB71 /* LaunchScreen.storyboard */,
 				BC1FBD3921B6B5C50000FB71 /* Info.plist */,
@@ -230,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC1FBD3821B6B5C50000FB71 /* LaunchScreen.storyboard in Resources */,
+				BC1FBD6021B6C0F10000FB71 /* QuestionTableViewCell.xib in Resources */,
 				BC1FBD3521B6B5C50000FB71 /* Assets.xcassets in Resources */,
 				BC1FBD3321B6B5C30000FB71 /* Main.storyboard in Resources */,
 			);
@@ -257,6 +267,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC1FBD3021B6B5C30000FB71 /* ViewController.swift in Sources */,
+				BC1FBD5F21B6C0F10000FB71 /* QuestionTableViewCell.swift in Sources */,
+				BC1FBD5C21B6B7690000FB71 /* QuestionsTableViewController.swift in Sources */,
 				BC1FBD2E21B6B5C30000FB71 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
