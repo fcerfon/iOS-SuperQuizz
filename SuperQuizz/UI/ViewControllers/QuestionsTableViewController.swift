@@ -37,7 +37,7 @@ class QuestionsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return questions.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -79,7 +79,7 @@ class QuestionsTableViewController: UITableViewController {
             //TODO: edit question
             let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateOrEditQuestionViewController") as! CreateOrEditQuestionViewController
             controller.delegate = self
-            //controller.questionToEdit
+            controller.questionToEdit = self.questions[indexPath.row]
             self.present(controller, animated: true, completion: nil)
             
         }
@@ -102,10 +102,12 @@ extension QuestionsTableViewController : CreateOrEditQuestionDelegate {
     func userDidEditQuestion(q: Question) {
         //TODO: Maj de la question
         self.presentedViewController?.dismiss(animated: true, completion: nil)
+        self.tableView.reloadData()
     }
     
     func userDidCreateQuestion(q: Question) {
-        // TODO:  creer la  question
+        questions.append(q)
         self.presentedViewController?.dismiss(animated: true, completion: nil)
+        self.tableView.reloadData()
     }
 }

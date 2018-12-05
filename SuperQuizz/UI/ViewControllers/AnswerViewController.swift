@@ -13,10 +13,49 @@ class AnswerViewController: UIViewController {
     var question : Question!
     
     @IBOutlet weak var questionTitle: UILabel!
-    @IBOutlet weak var firstAnswer: UILabel!
-    @IBOutlet weak var secondAnswer: UILabel!
-    @IBOutlet weak var thirdAnswer: UILabel!
-    @IBOutlet weak var fourthAnswer: UILabel!
+
+    @IBOutlet weak var firstAnswer: UIButton!
+    @IBOutlet weak var secondAnswer: UIButton!
+    @IBOutlet weak var thirdAnswer: UIButton!
+    @IBOutlet weak var fourthAnswer: UIButton!
+    
+    @IBAction func onFirstAnswerClick(_ sender: Any) {
+        question.userChoice = 1
+        if (question.correctAnswer == 1) {
+            userDidChooseAnswer(isCorrectAnswer: true)
+        }
+        else {
+            userDidChooseAnswer(isCorrectAnswer: false)
+        }
+    }
+    @IBAction func onSecondAnswerCllick(_ sender: Any) {
+        question.userChoice = 2
+        if (question.correctAnswer == 2) {
+            userDidChooseAnswer(isCorrectAnswer: true)
+        }
+        else {
+            userDidChooseAnswer(isCorrectAnswer: false)
+        }
+    }
+    @IBAction func onThirdAnswerClick(_ sender: Any) {
+        question.userChoice = 3
+        if (question.correctAnswer == 3) {
+            userDidChooseAnswer(isCorrectAnswer: true)
+        }
+        else {
+            userDidChooseAnswer(isCorrectAnswer: false)
+        }
+    }
+    @IBAction func onFourthAnswerClick(_ sender: Any) {
+        question.userChoice = 4
+        if (question.correctAnswer == 4) {
+            userDidChooseAnswer(isCorrectAnswer: true)
+        }
+        else {
+            userDidChooseAnswer(isCorrectAnswer: false)
+        }
+    }
+    
     @IBOutlet weak var image: UIImageView!
     var onQuestionAnswered : ((_ question : Question, _ isCorrectAnswer : Bool) -> ())?
     
@@ -24,11 +63,11 @@ class AnswerViewController: UIViewController {
         super.viewDidLoad()
         
         questionTitle.text = question.title
-        firstAnswer.text = question.propositions[0]
-        secondAnswer.text = question.propositions[1]
-        thirdAnswer.text = question.propositions[2]
-        fourthAnswer.text = question.propositions[3]
-        
+        firstAnswer.setTitle(question.propositions[0], for: .normal)
+        secondAnswer.setTitle(question.propositions[1], for: .normal)
+        thirdAnswer.setTitle(question.propositions[2], for: .normal)
+        fourthAnswer.setTitle(question.propositions[3], for: .normal)
+
         if let imageName = question.image {
             if let resourcePath = Bundle.main.resourcePath {
                 let path = resourcePath + "/" + imageName
@@ -46,7 +85,6 @@ class AnswerViewController: UIViewController {
         
         self.dismiss(animated: true, completion: nil)
         onQuestionAnswered?(question, isCorrectAnswer)
-        
     }
 }
 

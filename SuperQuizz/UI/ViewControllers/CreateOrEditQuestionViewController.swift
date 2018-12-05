@@ -27,23 +27,25 @@ class CreateOrEditQuestionViewController: UIViewController {
     @IBOutlet weak var fourthPropositionSwitch: UISwitch!
     
     @IBOutlet weak var firstPropositionText: UITextField!
+
     @IBOutlet weak var secondPropositionText: UITextField!
     @IBOutlet weak var thirdPropositionText: UITextField!
     @IBOutlet weak var fourthPropositionText: UITextField!
     
     @IBOutlet weak var validateButton: UIButton!
     
-    let switches : [UISwitch]
+    @IBAction func validated(_ sender: UIButton) {
+        createOrEditQuestion()
+    }
+    
+    var switches : [UISwitch]?
+    var propositions : [UITextField]?
     
     //MARK end IBoutlet
     
     var questionToEdit: Question?
+    var correctAnswer: Int = 1
     weak var delegate : CreateOrEditQuestionDelegate?
-    
-    required init?(coder aDecoder: NSCoder) {
-        switches = [firstPropositionSwitch, secondPropositionSwitch, thirdPropositionSwitch, fourthPropositionSwitch]
-        super.init(coder: aDecoder)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,21 +53,51 @@ class CreateOrEditQuestionViewController: UIViewController {
             
             titleQuestion.text = q.title
             
-            firstPropositionText.placeholder = q.propositions[0]
-            secondPropositionText.placeholder = q.propositions[1]
-            thirdPropositionText.placeholder = q.propositions[2]
-            fourthPropositionText.placeholder = q.propositions[3]
+            propositions = [
+                        firstPropositionText,
+                        secondPropositionText,
+                        thirdPropositionText,
+                        fourthPropositionText
+                    ]
+            
+            for (i, propo) in propositions!.enumerated() {
+                propo.text = q.propositions[i]
+            }
+            
+            switches = [
+                        firstPropositionSwitch,
+                        secondPropositionSwitch,
+                        thirdPropositionSwitch,
+                        fourthPropositionSwitch
+                    ]
             
             firstPropositionSwitch.setOn(false, animated: false)
-            switches[q.correctAnswer].setOn(true, animated: false)
+            switches?[q.correctAnswer].setOn(true, animated: false)
         }
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(validateView(_:)))
+        gesture.numberOfTapsRequired = 1
+        
+        view.addGestureRecognizer(gesture)
+    }
+    
+    @objc func validateView(_ gesture:UITapGestureRecognizer)
+    {
+        createOrEditQuestion()
     }
     
     func createOrEditQuestion () {
         if let question = questionToEdit {
             delegate?.userDidEditQuestion(q: question)
         } else {
-            let question = Question(title: "", correctAnswer: 0, propositions: [""])
+            
+            let title = titleQuestion.text ?? ""
+            let firstProposition = firstPropositionText.text ?? ""
+            let secondProposition = secondPropositionText.text ?? ""
+            let thirdProposition = thirdPropositionText.text ?? ""
+            let fourthProposition = fourthPropositionText.text ?? ""
+            
+            let question = Question(title: title, correctAnswer: correctAnswer, propositions: [firstProposition,secondProposition,thirdProposition,fourthProposition])
+            
             delegate?.userDidCreateQuestion(q: question)
         }
         self.dismiss(animated: true, completion: nil)
