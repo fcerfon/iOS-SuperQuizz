@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../SuperQuizz/Assets.xcassets/dino.jpg">
+   </FileRef>
+   <FileRef
       location = "self:SuperQuizz.xcodeproj">
    </FileRef>
 </Workspace>
