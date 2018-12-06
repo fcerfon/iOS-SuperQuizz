@@ -112,10 +112,10 @@ class CreateOrEditQuestionViewController: UIViewController {
         let correctAnswer = getCorrectAnswer()
         
         if questionToEdit != nil {
-            let question = Question(id: questionToEdit!.getId(), title: title, correctAnswer: correctAnswer, propositions: [firstProposition,secondProposition,thirdProposition,fourthProposition])
+            let question = Question(id: questionToEdit!.getId(), title: title, correctAnswer: correctAnswer, propositions: [firstProposition,secondProposition,thirdProposition,fourthProposition], imageUrl: questionToEdit?.imageUrl)
             delegate?.userDidEditQuestion(q: question)
         } else {
-            let question = Question(id: nil, title: title, correctAnswer: correctAnswer, propositions: [firstProposition,secondProposition,thirdProposition,fourthProposition])
+            let question = Question(id: nil, title: title, correctAnswer: correctAnswer, propositions: [firstProposition,secondProposition,thirdProposition,fourthProposition], imageUrl: nil)
             delegate?.userDidCreateQuestion(q: question, from: self)
         }
         self.dismiss(animated: true, completion: nil)

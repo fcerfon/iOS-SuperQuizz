@@ -11,11 +11,11 @@ import UIKit
 class QuestionsTableViewController: UITableViewController {
 
     var questions = [
-        Question(id: nil, title: "Quelle est la capitale de la France", correctAnswer : 2, propositions : ["Londres", "Paris", "Marseille", "Toulouse"]),
-        Question(id: nil, title: "Ils ont des chapeaux ronds vive les ...", correctAnswer : 1, propositions : ["Les bretons", "Les nantais", "Les parisiens", "Les toulousains"]),
-        Question(id: nil, title: "Chien ou chat ?", correctAnswer : 1, propositions : ["Chien", "Chat", "Chat", "Chat"]),
-        Question(id: nil, title: "Ce célèbre gâteau breton s'écrit : ", correctAnswer : 3, propositions : ["Kouinamant", "Kouign amant", "Kouin amann", "Kouinaman"]),
-        Question(id: nil, title: "Laquelle de ces marques est française ?", correctAnswer : 4, propositions : ["Kawazaki", "Mitsubishi", "Volwagen", "Citroën"])
+        Question(id: nil, title: "Quelle est la capitale de la France", correctAnswer : 2, propositions : ["Londres", "Paris", "Marseille", "Toulouse"], imageUrl: nil),
+        Question(id: nil, title: "Ils ont des chapeaux ronds vive les ...", correctAnswer : 1, propositions : ["Les bretons", "Les nantais", "Les parisiens", "Les toulousains"], imageUrl: nil),
+        Question(id: nil, title: "Chien ou chat ?", correctAnswer : 1, propositions : ["Chien", "Chat", "Chat", "Chat"], imageUrl: nil),
+        Question(id: nil, title: "Ce célèbre gâteau breton s'écrit : ", correctAnswer : 3, propositions : ["Kouinamant", "Kouign amant", "Kouin amann", "Kouinaman"], imageUrl: nil),
+        Question(id: nil, title: "Laquelle de ces marques est française ?", correctAnswer : 4, propositions : ["Kawazaki", "Mitsubishi", "Volwagen", "Citroën"], imageUrl: nil)
     ]
     
     override func viewDidLoad() {
@@ -70,12 +70,10 @@ class QuestionsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexpath) in
-            //TODO: edit question
             let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateOrEditQuestionViewController") as! CreateOrEditQuestionViewController
             controller.delegate = self
             controller.questionToEdit = self.questions[indexPath.row]
             self.present(controller, animated: true, completion: nil)
-            
         }
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: "delete") { (action, indexpath) in

@@ -244,7 +244,7 @@
                                     </progressView>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dino.jpg" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u9U-xS-gKB">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u9U-xS-gKB">
                                 <rect key="frame" x="45" y="70.5" width="230" height="230"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="u9U-xS-gKB" secondAttribute="height" id="F3g-mV-yYT"/>
@@ -305,7 +305,4 @@
             <point key="canvasLocation" x="410" y="95"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="dino.jpg" width="600" height="600"/>
-    </resources>
 </document>

@@ -14,14 +14,14 @@ class Question {
     public var correctAnswer : Int = 0
     public var propositions = ["", "", "", ""]
     public var userChoice : Int?
-    public var image : String?
+    public var imageUrl : String?
     
-    init(id : Int?, title : String, correctAnswer : Int, propositions : [String]) {
+    init(id : Int?, title : String, correctAnswer : Int, propositions : [String], imageUrl: String?) {
         self.id = id
         self.title = title
         self.correctAnswer = correctAnswer
         self.propositions = propositions
-        self.image = "dino.jpg"
+        self.imageUrl = imageUrl
     }
     
     public func getId() -> Int? {

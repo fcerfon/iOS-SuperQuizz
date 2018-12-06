@@ -18,6 +18,7 @@ class AnswerViewController: UIViewController {
     @IBOutlet weak var secondAnswer: UIButton!
     @IBOutlet weak var thirdAnswer: UIButton!
     @IBOutlet weak var fourthAnswer: UIButton!
+    @IBOutlet weak var image: UIImageView!
     
     @IBOutlet weak var progressBar: UIProgressView!
     
@@ -63,7 +64,6 @@ class AnswerViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var image: UIImageView!
     var onQuestionAnswered : ((_ question : Question, _ isCorrectAnswer : Bool) -> ())?
     
     override func viewDidLoad() {
@@ -75,13 +75,12 @@ class AnswerViewController: UIViewController {
         thirdAnswer.setTitle(question.propositions[2], for: .normal)
         fourthAnswer.setTitle(question.propositions[3], for: .normal)
         
-        if let imageName = question.image {
-            if let resourcePath = Bundle.main.resourcePath {
-                let path = resourcePath + "/" + imageName
-                print(path)
+        if question.imageUrl != nil {
+            CachedImages.instance.loadImageFromUrl(imageUrl: question.imageUrl!) { (data : Data) in
+                self.image.image = UIImage(data: data)
             }
         }
-        
+
         self.progressBar.progress = 0
     }
     
@@ -130,4 +129,3 @@ class AnswerViewController: UIViewController {
         }
     }
 }
-

@@ -20,6 +20,7 @@
 		BC1FBD6421B6C4E10000FB71 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1FBD6321B6C4E10000FB71 /* Question.swift */; };
 		BCA1DEAA21B7CF3E00FD5824 /* CreateOrEditQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA1DEA921B7CF3E00FD5824 /* CreateOrEditQuestionViewController.swift */; };
 		BCBF800A21B937550027C8FA /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBF800921B937550027C8FA /* APIClient.swift */; };
+		BCE13F5021B984C3009E8CBA /* CachedImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE13F4F21B984C3009E8CBA /* CachedImages.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		BC1FBD6321B6C4E10000FB71 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		BCA1DEA921B7CF3E00FD5824 /* CreateOrEditQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrEditQuestionViewController.swift; sourceTree = "<group>"; };
 		BCBF800921B937550027C8FA /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		BCE13F4F21B984C3009E8CBA /* CachedImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImages.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 			children = (
 				BC1FBD6321B6C4E10000FB71 /* Question.swift */,
 				BCBF800921B937550027C8FA /* APIClient.swift */,
+				BCE13F4F21B984C3009E8CBA /* CachedImages.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				BC1FBD6421B6C4E10000FB71 /* Question.swift in Sources */,
 				BCBF800A21B937550027C8FA /* APIClient.swift in Sources */,
 				BC1FBD3021B6B5C30000FB71 /* AnswerViewController.swift in Sources */,
+				BCE13F5021B984C3009E8CBA /* CachedImages.swift in Sources */,
 				BC1FBD5F21B6C0F10000FB71 /* QuestionTableViewCell.swift in Sources */,
 				BC1FBD5C21B6B7690000FB71 /* QuestionsTableViewController.swift in Sources */,
 				BC1FBD2E21B6B5C30000FB71 /* AppDelegate.swift in Sources */,

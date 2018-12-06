@@ -53,9 +53,6 @@ class APIClient {
         guard let title = objectDictionary["title"] else {
             return nil
         }
-        if title as! String == "qfdsvcx" {
-            print("lolo")
-        }
         guard let firstProposition = objectDictionary["answer_1"] else {
             return nil
         }
@@ -68,6 +65,7 @@ class APIClient {
         guard let fourthProposition = objectDictionary["answer_4"] else {
             return nil
         }
+        let imageUrl = objectDictionary["author_img_url"] as? String
         
         if let id = objectDictionary["id"] as? NSNumber {
             if let correctAnswer = objectDictionary["correct_answer"] as? NSNumber {
@@ -77,7 +75,7 @@ class APIClient {
                                   propositions: [firstProposition as! String,
                                                  secondProposition as! String,
                                                  thirdProposition as! String,
-                                                 fourthProposition as! String])
+                                                 fourthProposition as! String], imageUrl: imageUrl)
                 return q
             }
         }
