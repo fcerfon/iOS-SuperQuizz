@@ -21,10 +21,10 @@ class AnswerViewController: UIViewController {
     
     @IBOutlet weak var progressBar: UIProgressView!
     
-    var progressBarCancelled = false
+    var work : DispatchWorkItem?
     
     // DO NOT set this value to 0
-    let PROGRESSBAR_MAX_TIME_IN_SECONDS : Float = 20.0
+    let progressMaxTimeInSeconds : Float = 3.0
     
     @IBAction func onFirstAnswerClick(_ sender: Any) {
         question.userChoice = 1
@@ -74,7 +74,7 @@ class AnswerViewController: UIViewController {
         secondAnswer.setTitle(question.propositions[1], for: .normal)
         thirdAnswer.setTitle(question.propositions[2], for: .normal)
         fourthAnswer.setTitle(question.propositions[3], for: .normal)
-
+        
         if let imageName = question.image {
             if let resourcePath = Bundle.main.resourcePath {
                 let path = resourcePath + "/" + imageName
@@ -83,25 +83,38 @@ class AnswerViewController: UIViewController {
         }
         
         self.progressBar.progress = 0
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        DispatchQueue.global(qos: .userInitiated).async {
-            var barAdvance: Float = 0.0
-            while barAdvance < 1.0 && !self.progressBarCancelled {
-                Thread.sleep(forTimeInterval: 1)
-                barAdvance += 1.0 / self.PROGRESSBAR_MAX_TIME_IN_SECONDS
-                DispatchQueue.main.async {
-                    self.progressBar.setProgress(barAdvance, animated: true)
+        work = DispatchWorkItem {
+            DispatchQueue.global(qos: .userInitiated).async {
+                var barAdvance: Float = 0.0
+                while barAdvance < 1.0 {
+                    Thread.sleep(forTimeInterval: 0.01)
+                    
+                    if self.work?.isCancelled ?? false {
+                        return
+                    }
+                    
+                    barAdvance += 1.0 / (self.progressMaxTimeInSeconds * 100)
+                    DispatchQueue.main.async {
+                        self.progressBar.setProgress(barAdvance, animated: true)
+                    }
                 }
-            }
-            DispatchQueue.main.async {
-                
-                // if the progressBar is cancelled, we don't manage the view cancellation
-                if !self.progressBarCancelled {
-                    self.question.userChoice = -1
-                    self.userDidChooseAnswer(isCorrectAnswer: false)
+                DispatchQueue.main.async {
+                        self.question.userChoice = -1
+                        self.userDidChooseAnswer(isCorrectAnswer: false)
                 }
             }
         }
+        work?.perform()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        work?.cancel()
     }
     
     func setOnResponseAnswered(closure : @escaping (_ question: Question,_ isCorrectAnswer :Bool)->()) {
@@ -110,9 +123,11 @@ class AnswerViewController: UIViewController {
     
     func userDidChooseAnswer(isCorrectAnswer : Bool) {
         //TODO : Faire les animations de réussite ou d'échec
-        progressBarCancelled = true
-        self.dismiss(animated: true, completion: nil)
-        onQuestionAnswered?(question, isCorrectAnswer)
+        work?.cancel()
+        if question != nil {
+            self.dismiss(animated: true, completion: nil)
+            onQuestionAnswered?(question, isCorrectAnswer)
+        }
     }
 }
 
