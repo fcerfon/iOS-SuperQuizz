@@ -9,16 +9,22 @@
 import Foundation
 
 class Question {
+    private let id : Int?
     public var title : String = ""
     public var correctAnswer : Int = 0
     public var propositions = ["", "", "", ""]
     public var userChoice : Int?
     public var image : String?
     
-    init(title : String, correctAnswer : Int, propositions : [String]) {
+    init(id : Int?, title : String, correctAnswer : Int, propositions : [String]) {
+        self.id = id
         self.title = title
         self.correctAnswer = correctAnswer
         self.propositions = propositions
         self.image = "dino.jpg"
+    }
+    
+    public func getId() -> Int? {
+        return id
     }
 }

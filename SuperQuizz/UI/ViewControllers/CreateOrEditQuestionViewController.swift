@@ -12,7 +12,7 @@ private let reuseIdentifier = "Cell"
 
 protocol CreateOrEditQuestionDelegate : AnyObject {
     func userDidEditQuestion(q : Question) -> ()
-    func userDidCreateQuestion(q : Question) -> ()
+    func userDidCreateQuestion(q : Question, from vc: CreateOrEditQuestionViewController) -> ()
 }
 
 class CreateOrEditQuestionViewController: UIViewController {
@@ -33,6 +33,7 @@ class CreateOrEditQuestionViewController: UIViewController {
     @IBOutlet weak var fourthPropositionText: UITextField!
     
     @IBOutlet weak var validateButton: UIButton!
+    @IBOutlet weak var progressBar: UIProgressView!
     
     @IBAction func validated(_ sender: UIButton) {
         createOrEditQuestion()
@@ -44,7 +45,6 @@ class CreateOrEditQuestionViewController: UIViewController {
     //MARK end IBoutlet
     
     var questionToEdit: Question?
-    var correctAnswer: Int = 1
     weak var delegate : CreateOrEditQuestionDelegate?
     
     override func viewDidLoad() {
@@ -73,7 +73,8 @@ class CreateOrEditQuestionViewController: UIViewController {
             }
             
             firstPropositionSwitch.setOn(false, animated: false)
-            switches?[q.correctAnswer].setOn(true, animated: false)
+            
+            switches?[q.correctAnswer - 1].setOn(true, animated: false)
         }
     }
     
@@ -86,27 +87,36 @@ class CreateOrEditQuestionViewController: UIViewController {
         }
     }
     
-
-    
     @objc func validateView(_ gesture:UITapGestureRecognizer)
     {
         createOrEditQuestion()
     }
     
+    func getCorrectAnswer() -> Int {
+        for i in 0...switches!.count {
+            if switches![i].isOn {
+                return i + 1 // array start at 0 but correctAnswer start at 1
+            }
+        }
+        return 0
+    }
+    
+    //FIX: selection de la réponse correcte non fonctionnelle
     func createOrEditQuestion () {
-        if let question = questionToEdit {
+        
+        let title = titleQuestion.text ?? ""
+        let firstProposition = firstPropositionText.text ?? ""
+        let secondProposition = secondPropositionText.text ?? ""
+        let thirdProposition = thirdPropositionText.text ?? ""
+        let fourthProposition = fourthPropositionText.text ?? ""
+        let correctAnswer = getCorrectAnswer()
+        
+        if questionToEdit != nil {
+            let question = Question(id: questionToEdit!.getId(), title: title, correctAnswer: correctAnswer, propositions: [firstProposition,secondProposition,thirdProposition,fourthProposition])
             delegate?.userDidEditQuestion(q: question)
         } else {
-            
-            let title = titleQuestion.text ?? ""
-            let firstProposition = firstPropositionText.text ?? ""
-            let secondProposition = secondPropositionText.text ?? ""
-            let thirdProposition = thirdPropositionText.text ?? ""
-            let fourthProposition = fourthPropositionText.text ?? ""
-            
-            let question = Question(title: title, correctAnswer: correctAnswer, propositions: [firstProposition,secondProposition,thirdProposition,fourthProposition])
-            
-            delegate?.userDidCreateQuestion(q: question)
+            let question = Question(id: nil, title: title, correctAnswer: correctAnswer, propositions: [firstProposition,secondProposition,thirdProposition,fourthProposition])
+            delegate?.userDidCreateQuestion(q: question, from: self)
         }
         self.dismiss(animated: true, completion: nil)
     }

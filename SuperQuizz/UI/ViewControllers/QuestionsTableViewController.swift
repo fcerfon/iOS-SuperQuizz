@@ -11,23 +11,17 @@ import UIKit
 class QuestionsTableViewController: UITableViewController {
 
     var questions = [
-        Question(title: "Quelle est la capitale de la France", correctAnswer : 2, propositions : ["Londres", "Paris", "Marseille", "Toulouse"]),
-        Question(title: "Ils ont des chapeaux ronds vive les ...", correctAnswer : 1, propositions : ["Les bretons", "Les nantais", "Les parisiens", "Les toulousains"]),
-        Question(title: "Chien ou chat ?", correctAnswer : 1, propositions : ["Chien", "Chat", "Chat", "Chat"]),
-        Question(title: "Ce célèbre gâteau breton s'écrit : ", correctAnswer : 3, propositions : ["Kouinamant", "Kouign amant", "Kouin amann", "Kouinaman"]),
-        Question(title: "Laquelle de ces marques est française ?", correctAnswer : 4, propositions : ["Kawazaki", "Mitsubishi", "Volwagen", "Citroën"])
+        Question(id: nil, title: "Quelle est la capitale de la France", correctAnswer : 2, propositions : ["Londres", "Paris", "Marseille", "Toulouse"]),
+        Question(id: nil, title: "Ils ont des chapeaux ronds vive les ...", correctAnswer : 1, propositions : ["Les bretons", "Les nantais", "Les parisiens", "Les toulousains"]),
+        Question(id: nil, title: "Chien ou chat ?", correctAnswer : 1, propositions : ["Chien", "Chat", "Chat", "Chat"]),
+        Question(id: nil, title: "Ce célèbre gâteau breton s'écrit : ", correctAnswer : 3, propositions : ["Kouinamant", "Kouign amant", "Kouin amann", "Kouinaman"]),
+        Question(id: nil, title: "Laquelle de ces marques est française ?", correctAnswer : 4, propositions : ["Kawazaki", "Mitsubishi", "Volwagen", "Citroën"])
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectinOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
         tableView.register(UINib(nibName: "QuestionTableViewCell", bundle: nil), forCellReuseIdentifier: "QuestionTableViewCell")
+        updateQuestionList()
     }
 
     // MARK: - Table view data source
@@ -85,7 +79,13 @@ class QuestionsTableViewController: UITableViewController {
         }
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: "delete") { (action, indexpath) in
-            //TODO: delete question
+            
+            _ = APIClient.instance.deleteOneQuestionFromServer(q: self.questions[indexPath.row], onSuccess: {
+                DispatchQueue.main.async {
+                    self.questions.remove(at: indexPath.row)
+                    self.tableView.reloadData()
+                }
+            }, onError: { (Error) in })
         }
         return [editAction,deleteAction]
     }
@@ -96,18 +96,52 @@ class QuestionsTableViewController: UITableViewController {
             controller.delegate = self
         }
     }
+    
+    func updateQuestionList() {
+        let _ = APIClient.instance.getAllQuestionsFromServer(onSuccess: { (serverQuestions) in
+            self.questions = serverQuestions
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }) { (Error) in
+            print(Error)
+        }
+    }
 }
 
 extension QuestionsTableViewController : CreateOrEditQuestionDelegate {
     func userDidEditQuestion(q: Question) {
-        //TODO: Maj de la question
-        self.presentedViewController?.dismiss(animated: true, completion: nil)
-        self.tableView.reloadData()
+        _ = APIClient.instance.editServerQuestion(q: q, onSuccess: { (serverQuestion: Question?) in
+            
+            for i in 0...self.questions.count {
+                if self.questions[i].getId() == q.getId() {
+                    self.questions[i] = q
+                    break
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self.presentedViewController?.dismiss(animated: true, completion: nil)
+                self.tableView.reloadData()
+            }
+        }, onError: { (Error) in
+            
+        })
     }
     
-    func userDidCreateQuestion(q: Question) {
-        questions.append(q)
-        self.presentedViewController?.dismiss(animated: true, completion: nil)
-        self.tableView.reloadData()
+    func userDidCreateQuestion(q: Question, from vc: CreateOrEditQuestionViewController) {
+        _ = APIClient.instance.createServerQuestion(q: q, onSuccess: { (q: Question?) in
+            guard let question = q else {
+                return
+            }
+            self.questions.append(question)
+            DispatchQueue.main.async {
+                self.presentedViewController?.dismiss(animated: true, completion: nil)
+                self.tableView.reloadData()
+                
+            }
+        }) { (Error) in
+            
+        }
     }
 }

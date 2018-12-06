@@ -200,33 +200,36 @@
                                 <rect key="frame" x="15" y="315.5" width="290" height="237.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHX-jC-3VC">
-                                        <rect key="frame" x="0.0" y="0.0" width="290" height="39"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="290" height="26"/>
                                         <state key="normal" title="Premiere réponse"/>
                                         <connections>
                                             <action selector="onFirstAnswerClick:" destination="Zu6-yz-9Jz" eventType="primaryActionTriggered" id="MxA-36-Utu"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vo8-9k-Xe7">
-                                        <rect key="frame" x="0.0" y="66" width="290" height="39.5"/>
+                                        <rect key="frame" x="0.0" y="53" width="290" height="26"/>
                                         <state key="normal" title="Seconde réponse"/>
                                         <connections>
                                             <action selector="onSecondAnswerCllick:" destination="Zu6-yz-9Jz" eventType="primaryActionTriggered" id="0d5-bQ-Dfy"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="of1-iS-vVz">
-                                        <rect key="frame" x="0.0" y="132.5" width="290" height="39"/>
+                                        <rect key="frame" x="0.0" y="106" width="290" height="25.5"/>
                                         <state key="normal" title="Troisième réponse"/>
                                         <connections>
                                             <action selector="onThirdAnswerClick:" destination="Zu6-yz-9Jz" eventType="touchUpInside" id="Ig8-A1-wgB"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ak5-sA-vlU">
-                                        <rect key="frame" x="0.0" y="198.5" width="290" height="39"/>
+                                        <rect key="frame" x="0.0" y="158.5" width="290" height="26"/>
                                         <state key="normal" title="Quatrième réponse"/>
                                         <connections>
                                             <action selector="onFourthAnswerClick:" destination="Zu6-yz-9Jz" eventType="touchUpInside" id="Nfc-qC-xdO"/>
                                         </connections>
                                     </button>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5Tb-I1-axl">
+                                        <rect key="frame" x="0.0" y="211.5" width="290" height="26"/>
+                                    </progressView>
                                 </subviews>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dino.jpg" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u9U-xS-gKB">
@@ -234,6 +237,14 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="u9U-xS-gKB" secondAttribute="height" id="F3g-mV-yYT"/>
                                 </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JDv-D6-6zK">
+                                <rect key="frame" x="40" y="220" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IV3-Mp-O7r">
+                                <rect key="frame" x="40" y="220" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -256,6 +267,7 @@
                         <outlet property="firstAnswer" destination="BHX-jC-3VC" id="z2U-26-CDo"/>
                         <outlet property="fourthAnswer" destination="Ak5-sA-vlU" id="AOD-Ge-ewE"/>
                         <outlet property="image" destination="u9U-xS-gKB" id="EzY-zx-nty"/>
+                        <outlet property="progressBar" destination="5Tb-I1-axl" id="QRf-MD-JuY"/>
                         <outlet property="secondAnswer" destination="Vo8-9k-Xe7" id="JVW-ui-ZD2"/>
                         <outlet property="thirdAnswer" destination="of1-iS-vVz" id="mHC-Dy-WfF"/>
                     </connections>
