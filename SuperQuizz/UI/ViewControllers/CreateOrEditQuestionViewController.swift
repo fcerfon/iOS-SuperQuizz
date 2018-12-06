@@ -49,36 +49,44 @@ class CreateOrEditQuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        propositions = [
+            firstPropositionText,
+            secondPropositionText,
+            thirdPropositionText,
+            fourthPropositionText
+        ]
+        
+        switches = [
+            firstPropositionSwitch,
+            secondPropositionSwitch,
+            thirdPropositionSwitch,
+            fourthPropositionSwitch
+        ]
+        
         if let q : Question = questionToEdit {
             
             titleQuestion.text = q.title
-            
-            propositions = [
-                        firstPropositionText,
-                        secondPropositionText,
-                        thirdPropositionText,
-                        fourthPropositionText
-                    ]
             
             for (i, propo) in propositions!.enumerated() {
                 propo.text = q.propositions[i]
             }
             
-            switches = [
-                        firstPropositionSwitch,
-                        secondPropositionSwitch,
-                        thirdPropositionSwitch,
-                        fourthPropositionSwitch
-                    ]
-            
             firstPropositionSwitch.setOn(false, animated: false)
             switches?[q.correctAnswer].setOn(true, animated: false)
         }
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(validateView(_:)))
-        gesture.numberOfTapsRequired = 1
-        
-        view.addGestureRecognizer(gesture)
     }
+    
+    @IBAction func onSwitchTapped(_ sender: UISwitch) {
+        if (switches != nil) {
+            for sw in switches! {
+                sw.setOn(false, animated: true)
+            }
+            sender.setOn(true, animated: false)
+        }
+    }
+    
+
     
     @objc func validateView(_ gesture:UITapGestureRecognizer)
     {

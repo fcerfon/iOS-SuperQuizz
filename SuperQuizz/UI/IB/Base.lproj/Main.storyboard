@@ -62,6 +62,9 @@
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jAW-ww-OJ3">
                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                                 <color key="onTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="onSwitchTapped:" destination="nBJ-W2-hJo" eventType="valueChanged" id="qQq-3k-N5U"/>
+                                                </connections>
                                             </switch>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Première proposition" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z2Z-xx-emc">
                                                 <rect key="frame" x="56" y="0.0" width="234" height="31"/>
@@ -77,6 +80,9 @@
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HZI-cZ-za9">
                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                                 <color key="onTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="onSwitchTapped:" destination="nBJ-W2-hJo" eventType="valueChanged" id="522-Ps-HAo"/>
+                                                </connections>
                                             </switch>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Deuxième proposition" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aJ4-iq-HOv">
                                                 <rect key="frame" x="56" y="0.0" width="234" height="31"/>
@@ -92,6 +98,9 @@
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tXh-hE-Yz3">
                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                                 <color key="onTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="onSwitchTapped:" destination="nBJ-W2-hJo" eventType="valueChanged" id="x5T-U5-wIo"/>
+                                                </connections>
                                             </switch>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Troisième proposition" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YPc-Yn-6e5">
                                                 <rect key="frame" x="56" y="0.0" width="234" height="31"/>
@@ -107,6 +116,9 @@
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kRb-Wh-QoC">
                                                 <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                                 <color key="onTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="onSwitchTapped:" destination="nBJ-W2-hJo" eventType="valueChanged" id="UG2-19-JAc"/>
+                                                </connections>
                                             </switch>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quatrième proposition" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s7G-wP-RC0">
                                                 <rect key="frame" x="56" y="0.0" width="234" height="31"/>
